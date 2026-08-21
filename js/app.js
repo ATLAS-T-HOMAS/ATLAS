@@ -270,3 +270,11 @@ L.tileLayer(
         attribution:"© OpenStreetMap"
     }
 ).addTo(mapa);
+const mapa = L.map('worldMap').setView([10, 15], 2);
+
+L.tileLayer(
+'https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png',
+{
+attribution:'© OpenStreetMap'
+}
+).addTo(mapa);
