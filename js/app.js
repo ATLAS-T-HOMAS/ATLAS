@@ -119,124 +119,52 @@ async function buscar() {
 
         const datos = await respuesta.json();
 
-        console.log(datos);
-
-        mostrarResultadosIA(datos);
+        mostrarResultadoIA(datos);
 
     } catch (error) {
 
         console.error(error);
 
-        alert("No se pudo conectar con ATLAS.");
+        alert("No se ha podido conectar con ATLAS.");
 
     }
 
 }
-function mostrarResultadosIA(datos){
+function mostrarResultadoIA(datos){
 
-    document.getElementById("panelTitle").innerHTML =
-        "🌍 " + datos.tema;
+    apagarNodos();
 
-    document.getElementById("panelDescription").innerHTML =
+    datos.paises.forEach(pais=>{
 
-    `
-    <strong>Resumen</strong>
+        encenderNodo(pais);
 
-    <br><br>
+    });
 
-    ${datos.resumen}
+    document.getElementById("panelTitle").innerHTML=
+        "🌍 "+datos.tema;
 
-    <br><br>
+    document.getElementById("panelDescription").innerHTML=`
 
-    <strong>Países relacionados</strong>
+        <strong>Resumen</strong>
 
-    <br><br>
+        <br><br>
 
-    ${datos.paises.join(", ")}
+        ${datos.resumen}
+
+        <br><br>
+
+        <strong>Países relacionados</strong>
+
+        <br><br>
+
+        ${datos.paises.join(", ")}
+
     `;
 
     document
         .getElementById("panel")
         .classList
         .add("active");
-
-}
-  const texto =
-  document
-  .getElementById("question")
-  .value
-  .toLowerCase()
-  .trim();
-
-  if(texto===""){
-
-    alert("Escribe una pregunta.");
-
-    return;
-
-  }
-
-  apagarNodos();
-
-  let encontrados=0;
-
-  Object.keys(NODOS).forEach(nombre=>{
-
-    const datos=NODOS[nombre];
-
-    const contenido=(
-
-      nombre+" "+
-      datos.problema+" "+
-      datos.descripcion+" "+
-      datos.proyecto
-
-    ).toLowerCase();
-
-    if(contenido.includes(texto)){
-
-      encontrados++;
-
-      encenderNodo(nombre);
-
-    }
-
-  });
-
-  if(encontrados===1){
-
-    Object.keys(NODOS).forEach(nombre=>{
-
-      const datos=NODOS[nombre];
-
-      const contenido=(
-
-      nombre+" "+
-      datos.problema+" "+
-      datos.descripcion+" "+
-      datos.proyecto
-
-      ).toLowerCase();
-
-      if(contenido.includes(texto)){
-
-        abrirNodo(nombre);
-
-      }
-
-    });
-
-  }
-
-  if(encontrados===0){
-
-    alert(
-      "Todavía no tenemos resultados para esa búsqueda.\n\nPronto ATLAS utilizará IA para encontrar conexiones."
-    );
-
-    encenderTodos();
-
-  }
 
 }
 
