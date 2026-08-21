@@ -72,17 +72,15 @@ document.addEventListener("DOMContentLoaded", () => {
     });
   }
 
-  document.querySelectorAll(".node").forEach(nodo=>{
+  const svg = document.getElementById("worldMap");
 
-    nodo.addEventListener("click",()=>{
+svg.addEventListener("click", (e) => {
 
-      abrirNodo(
-        nodo.dataset.node
-      );
+    const codigoISO = e.target.id;
 
-    });
+    abrirPais(codigoISO);
 
-  });
+});
 
   document.querySelector(".close-panel")
     .addEventListener("click",cerrarPanel);
