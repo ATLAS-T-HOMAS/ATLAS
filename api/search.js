@@ -1,95 +1,79 @@
 export default async function handler(req, res) {
 
-    if (req.method !== "POST") {
+  if (req.method !== "POST") {
+    return res.status(405).json({
+      error: "Method not allowed"
+    });
+  }
 
-        return res.status(405).json({
-            error: "Method not allowed"
-        });
-
-    }
+  try {
 
     const { pregunta } = req.body;
 
-    // Simulación de IA
-    // En la siguiente versión aquí conectaremos OpenAI
+    const url =
+      "https://es.wikipedia.org/w/api.php?" +
+      new URLSearchParams({
+        action: "query",
+        list: "search",
+        srsearch: pregunta,
+        utf8: "1",
+        format: "json"
+      });
 
-    const respuesta = generarRespuesta(pregunta);
+    const respuesta = await fetch(url, {
+      headers: {
+        "User-Agent": "ATLAS/1.0"
+      }
+    });
 
-    res.status(200).json(respuesta);
+    const wikipedia = await respuesta.json();
 
-}
+    if (
+      !wikipedia.query ||
+      wikipedia.query.search.length === 0
+    ) {
 
-function generarRespuesta(pregunta){
+      return res.status(200).json({
 
-    const texto = pregunta.toLowerCase();
-
-    if(texto.includes("soledad")){
-
-        return {
-
-            tema:"Soledad",
-
-            paises:[
-                "España",
-                "Japón",
-                "Estados Unidos",
-                "Suecia"
-            ],
-
-            resumen:
-            "La soledad afecta de manera diferente a cada país. ATLAS irá mostrando datos, organizaciones y proyectos específicos para cada uno."
-
-        };
-
-    }
-
-    if(texto.includes("agua")){
-
-        return{
-
-            tema:"Acceso al agua",
-
-            paises:[
-                "Kenia",
-                "India",
-                "Etiopía"
-            ],
-
-            resumen:
-            "El acceso al agua potable sigue siendo uno de los grandes retos mundiales."
-
-        }
-
-    }
-
-    if(texto.includes("bosques") || texto.includes("deforestacion")){
-
-        return{
-
-            tema:"Deforestación",
-
-            paises:[
-                "Brasil",
-                "Indonesia",
-                "Perú"
-            ],
-
-            resumen:
-            "La pérdida de bosques es uno de los desafíos ambientales más importantes."
-
-        }
-
-    }
-
-    return{
-
-        tema:"General",
-
-        paises:[],
+        tema: pregunta,
 
         resumen:
-        "Todavía estamos aprendiendo sobre esta pregunta."
+          "No hemos encontrado información todavía.",
+
+        paises: []
+
+      });
 
     }
+
+    const articulo = wikipedia.query.search[0];
+
+    return res.status(200).json({
+
+      tema: pregunta,
+
+      resumen: articulo.snippet.replace(/<[^>]+>/g,""),
+
+      paises: [],
+
+      wikipedia:
+      "https://es.wikipedia.org/wiki/" +
+      encodeURIComponent(
+        articulo.title.replace(/ /g,"_")
+      )
+
+    });
+
+  }
+
+  catch(error){
+
+    return res.status(500).json({
+
+      error:error.message
+
+    });
+
+  }
 
 }
