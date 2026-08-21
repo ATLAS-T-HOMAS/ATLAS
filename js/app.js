@@ -254,3 +254,19 @@ function cerrarPanel(){
   .remove("active");
 
 }
+const mapa = L.map("worldMap",{
+
+    zoomControl:true,
+
+    minZoom:2,
+
+    worldCopyJump:true
+
+}).setView([10,20],2);
+
+L.tileLayer(
+    "https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png",
+    {
+        attribution:"© OpenStreetMap"
+    }
+).addTo(mapa);
