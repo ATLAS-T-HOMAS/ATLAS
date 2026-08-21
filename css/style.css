@@ -270,3 +270,350 @@ nav a:hover{
     background:rgba(255,255,255,.04);
 
 }
+/* ===========================
+   MAPA
+=========================== */
+
+.map-section{
+
+    padding:90px 40px;
+
+}
+
+.map-header{
+
+    text-align:center;
+
+    margin-bottom:40px;
+
+}
+
+.map-header h2{
+
+    font-size:48px;
+
+    margin-bottom:15px;
+
+}
+
+.map-header p{
+
+    color:#B6C3D5;
+
+    font-size:20px;
+
+}
+
+.world-map{
+
+    position:relative;
+
+    width:100%;
+
+    max-width:1200px;
+
+    margin:0 auto;
+
+    aspect-ratio:2/1;
+
+    border-radius:28px;
+
+    overflow:hidden;
+
+    background:
+    radial-gradient(circle at center,#17355e 0%,#0A1525 70%);
+
+    border:1px solid rgba(255,255,255,.08);
+
+    box-shadow:0 25px 80px rgba(0,0,0,.45);
+
+}
+
+.world-map::before{
+
+    content:"";
+
+    position:absolute;
+
+    inset:0;
+
+    background:url("https://upload.wikimedia.org/wikipedia/commons/8/80/World_map_-_low_resolution.svg");
+
+    background-repeat:no-repeat;
+
+    background-position:center;
+
+    background-size:92%;
+
+    filter:invert(1);
+
+    opacity:.12;
+
+}
+
+/* ===========================
+   NODOS
+=========================== */
+
+.node{
+
+    position:absolute;
+
+    width:18px;
+
+    height:18px;
+
+    border-radius:50%;
+
+    background:#66D7FF;
+
+    cursor:pointer;
+
+    box-shadow:
+        0 0 12px #66D7FF,
+        0 0 25px #66D7FF,
+        0 0 40px rgba(102,215,255,.5);
+
+    animation:pulse 2.2s infinite;
+
+    transition:.3s;
+
+}
+
+.node:hover{
+
+    transform:scale(1.6);
+
+}
+
+@keyframes pulse{
+
+    0%{
+        transform:scale(1);
+        opacity:1;
+    }
+
+    50%{
+        transform:scale(1.4);
+        opacity:.8;
+    }
+
+    100%{
+        transform:scale(1);
+        opacity:1;
+    }
+
+}
+
+/* POSICIONES */
+
+.madrid{
+    top:34%;
+    left:46%;
+}
+
+.brasil{
+    top:60%;
+    left:34%;
+}
+
+.kenia{
+    top:53%;
+    left:56%;
+}
+
+.palestina{
+    top:39%;
+    left:54%;
+}
+
+.tokio{
+    top:38%;
+    left:83%;
+}
+
+.nuevayork{
+    top:37%;
+    left:23%;
+}
+
+.chile{
+    top:77%;
+    left:29%;
+}
+
+/* ===========================
+   PANEL LATERAL
+=========================== */
+
+.panel{
+
+    position:fixed;
+
+    top:0;
+
+    right:-420px;
+
+    width:400px;
+
+    max-width:90vw;
+
+    height:100vh;
+
+    background:#0D1828;
+
+    padding:35px;
+
+    transition:.45s;
+
+    z-index:2000;
+
+    box-shadow:-10px 0 40px rgba(0,0,0,.45);
+
+}
+
+.panel.active{
+
+    right:0;
+
+}
+
+.close-panel{
+
+    float:right;
+
+    background:none;
+
+    border:none;
+
+    color:white;
+
+    font-size:28px;
+
+    cursor:pointer;
+
+}
+
+.panel h2{
+
+    margin-top:45px;
+
+    margin-bottom:20px;
+
+    font-size:34px;
+
+}
+
+.panel p{
+
+    color:#AFC0D4;
+
+    line-height:1.6;
+
+}
+
+.panel-grid{
+
+    margin-top:40px;
+
+    display:grid;
+
+    gap:16px;
+
+}
+
+.panel-grid div{
+
+    background:#172A43;
+
+    padding:18px;
+
+    border-radius:14px;
+
+    transition:.3s;
+
+    cursor:pointer;
+
+}
+
+.panel-grid div:hover{
+
+    background:#5D7CFA;
+
+}
+
+/* ===========================
+   FOOTER
+=========================== */
+
+footer{
+
+    text-align:center;
+
+    padding:45px;
+
+    color:#8FA0B4;
+
+    border-top:1px solid rgba(255,255,255,.06);
+
+}
+
+/* ===========================
+   RESPONSIVE
+=========================== */
+
+@media(max-width:900px){
+
+.hero h1{
+
+    font-size:48px;
+
+}
+
+.hero p{
+
+    font-size:18px;
+
+}
+
+.search{
+
+    flex-direction:column;
+
+    border-radius:24px;
+
+}
+
+.search button{
+
+    width:100%;
+
+    padding:22px;
+
+}
+
+.navbar{
+
+    padding:18px 25px;
+
+}
+
+nav{
+
+    display:none;
+
+}
+
+.map-header h2{
+
+    font-size:36px;
+
+}
+
+.panel{
+
+    width:100%;
+
+}
+
+}
