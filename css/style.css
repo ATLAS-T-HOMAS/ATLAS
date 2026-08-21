@@ -1,374 +1,272 @@
+/* ===========================
+   RESET
+=========================== */
+
 *{
-margin:0;
-padding:0;
-box-sizing:border-box;
-font-family:'Inter',sans-serif;
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
 }
 
 html{
-scroll-behavior:smooth;
+    scroll-behavior:smooth;
 }
 
 body{
-background:#07111F;
-color:white;
-overflow-x:hidden;
+    font-family:'Inter',sans-serif;
+    background:#07111F;
+    color:white;
+    overflow-x:hidden;
 }
 
-.hero{
+/* ===========================
+   NAVBAR
+=========================== */
 
-height:100vh;
+.navbar{
 
-display:flex;
+    position:fixed;
 
-justify-content:center;
+    top:0;
 
-align-items:center;
+    left:0;
 
-text-align:center;
+    width:100%;
 
-padding:40px;
+    padding:22px 60px;
 
-background:
-linear-gradient(rgba(7,17,31,.82),rgba(7,17,31,.95)),
-url("https://images.unsplash.com/photo-1526778548025-fa2f459cd5c1?auto=format&fit=crop&w=1800&q=80");
+    display:flex;
 
-background-size:cover;
+    justify-content:space-between;
 
-background-position:center;
+    align-items:center;
 
-}
+    background:rgba(7,17,31,.75);
 
-.container{
+    backdrop-filter:blur(20px);
 
-max-width:1000px;
-
-width:100%;
+    z-index:1000;
 
 }
 
 .logo{
 
-font-size:90px;
+    font-size:28px;
 
-font-weight:900;
-
-letter-spacing:10px;
-
-margin-bottom:20px;
+    font-weight:800;
 
 }
 
-.subtitle{
+.logo span{
 
-font-size:28px;
-
-color:#CED7E5;
-
-margin-bottom:50px;
+    margin-left:8px;
 
 }
+
+nav{
+
+    display:flex;
+
+    gap:35px;
+
+}
+
+nav a{
+
+    color:white;
+
+    text-decoration:none;
+
+    opacity:.75;
+
+    transition:.3s;
+
+}
+
+nav a:hover{
+
+    opacity:1;
+
+}
+
+/* ===========================
+   HERO
+=========================== */
+
+.hero{
+
+    min-height:100vh;
+
+    display:flex;
+
+    justify-content:center;
+
+    align-items:center;
+
+    padding:120px 40px 60px;
+
+    background:
+    linear-gradient(rgba(7,17,31,.82),rgba(7,17,31,.95)),
+    radial-gradient(circle at center,#17355e,#07111F 70%);
+
+}
+
+.hero-content{
+
+    width:100%;
+
+    max-width:1100px;
+
+    text-align:center;
+
+}
+
+.hero h1{
+
+    font-size:72px;
+
+    line-height:1.1;
+
+    margin-bottom:30px;
+
+}
+
+.hero p{
+
+    font-size:22px;
+
+    color:#C6D1E2;
+
+    max-width:760px;
+
+    margin:auto;
+
+}
+
+/* ===========================
+   SEARCH
+=========================== */
 
 .search{
 
-display:flex;
+    margin:55px auto;
 
-background:white;
+    max-width:900px;
 
-border-radius:60px;
+    display:flex;
 
-overflow:hidden;
+    background:white;
 
-box-shadow:0 20px 50px rgba(0,0,0,.35);
+    border-radius:70px;
+
+    overflow:hidden;
+
+    box-shadow:0 25px 70px rgba(0,0,0,.45);
 
 }
 
 .search input{
 
-flex:1;
+    flex:1;
 
-padding:24px;
+    padding:24px;
 
-font-size:22px;
+    font-size:22px;
 
-border:none;
+    border:none;
 
-outline:none;
+    outline:none;
 
 }
 
 .search button{
 
-width:220px;
+    width:220px;
 
-background:#5D7CFA;
+    border:none;
 
-border:none;
+    background:#5D7CFA;
 
-color:white;
+    color:white;
 
-font-size:22px;
+    font-size:20px;
 
-cursor:pointer;
+    cursor:pointer;
 
-transition:.3s;
+    transition:.3s;
 
 }
 
 .search button:hover{
 
-background:#4F6EF0;
+    background:#4968f3;
 
 }
 
-.quick{
+/* ===========================
+   MODES
+=========================== */
 
-display:flex;
+.modes{
 
-justify-content:center;
-
-gap:15px;
-
-margin-top:35px;
-
-flex-wrap:wrap;
-
-}
-
-.quick div{
-
-padding:12px 18px;
-
-border:1px solid rgba(255,255,255,.2);
-
-border-radius:40px;
-
-cursor:pointer;
-
-transition:.3s;
-
-}
-
-.quick div:hover{
-
-background:#1A2B44;
-
-}
-
-footer{
-
-padding:35px;
-
-text-align:center;
-
-background:#050C16;
-
-color:#98A6B8;
-
-}
-.world-preview{
     display:flex;
+
     justify-content:center;
-    margin:60px 0;
-}
 
-.world-map{
+    gap:18px;
 
-    position:relative;
+    margin-bottom:40px;
 
-    width:1000px;
-
-    max-width:95%;
-
-    aspect-ratio:2/1;
-
-    border-radius:25px;
-
-    background:
-    radial-gradient(circle at center,#143153 0%,#091321 70%);
-
-    border:1px solid rgba(255,255,255,.08);
-
-    overflow:hidden;
+    flex-wrap:wrap;
 
 }
 
-/* Continentes simulados */
+.mode{
 
-.world-map::before{
+    padding:16px 28px;
 
-    content:"";
+    border-radius:40px;
 
-    position:absolute;
-
-    inset:0;
-
-    background:url("https://upload.wikimedia.org/wikipedia/commons/8/80/World_map_-_low_resolution.svg");
-
-    background-repeat:no-repeat;
-
-    background-position:center;
-
-    background-size:90%;
-
-    filter:invert(1);
-
-    opacity:.12;
-
-}
-
-.node{
-
-    position:absolute;
-
-    width:16px;
-
-    height:16px;
-
-    border-radius:50%;
-
-    background:#69d2ff;
-
-    box-shadow:
-    0 0 12px #69d2ff,
-    0 0 30px #69d2ff;
+    border:none;
 
     cursor:pointer;
 
-    animation:pulse 2s infinite;
+    background:#14253C;
+
+    color:white;
 
 }
 
-@keyframes pulse{
+.mode.active{
 
-0%{
-transform:scale(1);
-}
-
-50%{
-transform:scale(1.5);
-}
-
-100%{
-transform:scale(1);
-}
+    background:#5D7CFA;
 
 }
 
-/* Posiciones */
+/* ===========================
+   EXAMPLES
+=========================== */
 
-.madrid{
-top:38%;
-left:46%;
-}
+.examples{
 
-.brasil{
-top:60%;
-left:34%;
-}
+    display:flex;
 
-.kenia{
-top:54%;
-left:56%;
-}
+    justify-content:center;
 
-.palestina{
-top:41%;
-left:54%;
-}
+    gap:15px;
 
-.tokio{
-top:40%;
-left:83%;
-}
-.panel{
-
-position:fixed;
-
-top:0;
-
-right:-420px;
-
-width:400px;
-
-height:100vh;
-
-background:#0d1828;
-
-padding:35px;
-
-transition:.45s;
-
-z-index:999;
-
-box-shadow:-10px 0 30px rgba(0,0,0,.45);
+    flex-wrap:wrap;
 
 }
 
-.panel.active{
+.examples span{
 
-right:0;
+    padding:12px 18px;
 
-}
+    border:1px solid rgba(255,255,255,.15);
 
-.close-panel{
+    border-radius:40px;
 
-background:none;
-
-border:none;
-
-color:white;
-
-font-size:28px;
-
-cursor:pointer;
-
-float:right;
-
-}
-
-.panel h2{
-
-margin-top:40px;
-
-font-size:34px;
-
-}
-
-.panel p{
-
-margin:20px 0;
-
-color:#a9b7c9;
-
-}
-
-.panel-grid{
-
-display:grid;
-
-gap:18px;
-
-margin-top:40px;
-
-}
-
-.panel-grid div{
-
-background:#15263d;
-
-padding:18px;
-
-border-radius:15px;
-
-cursor:pointer;
-
-transition:.3s;
-
-}
-
-.panel-grid div:hover{
-
-background:#5D7CFA;
+    background:rgba(255,255,255,.04);
 
 }
