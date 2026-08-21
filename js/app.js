@@ -149,17 +149,22 @@ function mostrarResultadoIA(datos){
 
         <br><br>
 
-        ${datos.resumen}
+       ${datos.resumen}
 
-        <br><br>
+<br><br>
 
-        <strong>Países relacionados</strong>
+<a
+href="${datos.wikipedia}"
+target="_blank"
+style="
+color:#6CC6FF;
+text-decoration:none;
+font-weight:bold;
+">
 
-        <br><br>
+📖 Abrir artículo de Wikipedia
 
-        ${datos.paises.join(", ")}
-
-    `;
+</a>
 
     document
         .getElementById("panel")
