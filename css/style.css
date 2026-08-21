@@ -644,3 +644,18 @@ border-radius:25px;
 overflow:hidden;
 
 }
+#worldMap{
+
+height:700px;
+
+width:100%;
+
+border-radius:25px;
+
+overflow:hidden;
+
+margin-top:40px;
+
+box-shadow:0 25px 80px rgba(0,0,0,.35);
+
+}
