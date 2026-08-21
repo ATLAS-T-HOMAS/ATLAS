@@ -2,489 +2,97 @@
 <html lang="es">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-  <title>ATLAS</title>
+  <meta
+    name="viewport"
+    content="width=device-width, initial-scale=1.0"
+  >
+
+  <meta
+    name="description"
+    content="ATLAS transforma tus preguntas sobre el mundo en caminos para comprender, conectar y actuar."
+  >
+
+  <title>ATLAS · De tu pregunta al mapa de respuestas</title>
 
   <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;700;900&display=swap" rel="stylesheet">
+  <link
+    rel="preconnect"
+    href="https://fonts.gstatic.com"
+    crossorigin
+  >
+
+  <link
+    href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;700;900&display=swap"
+    rel="stylesheet"
+  >
 
   <link rel="stylesheet" href="css/style.css">
-</head>
-<style>
-
-*{
-margin:0;
-padding:0;
-box-sizing:border-box;
-font-family:'Inter',sans-serif;
-}
-
-body{
-
-background:#06111f;
-
-color:white;
-
-overflow-x:hidden;
-
-}
-
-.hero{
-
-position:relative;
-
-min-height:100vh;
-
-display:flex;
-
-align-items:center;
-
-justify-content:center;
-
-padding:60px;
-
-background:
-linear-gradient(rgba(6,17,31,.70),rgba(6,17,31,.95)),
-url("https://images.unsplash.com/photo-1526778548025-fa2f459cd5c1?auto=format&fit=crop&w=1800&q=80");
-
-background-size:cover;
-background-position:center;
-
-}
-
-.content{
-
-text-align:center;
-
-max-width:1000px;
-
-}
-
-.logo{
-
-font-size:90px;
-
-font-weight:900;
-
-letter-spacing:12px;
-
-margin-bottom:20px;
-
-}
-
-.subtitle{
-
-font-size:28px;
-
-color:#cdd6e3;
-
-margin-bottom:50px;
-
-}
-
-.search{
-
-display:flex;
-
-background:white;
-
-border-radius:60px;
-
-overflow:hidden;
-
-max-width:900px;
-
-margin:auto;
-
-box-shadow:0 20px 60px rgba(0,0,0,.4);
-
-}
-
-.search input{
-
-flex:1;
-
-padding:26px;
-
-font-size:22px;
-
-border:none;
-
-outline:none;
-
-}
-
-.search button{
-
-width:220px;
-
-background:#5865F2;
-
-border:none;
-
-color:white;
-
-font-size:22px;
-
-cursor:pointer;
-
-transition:.3s;
-
-}
-
-.search button:hover{
-
-background:#6d79ff;
-
-}
-
-.examples{
-
-display:flex;
-
-justify-content:center;
-
-gap:15px;
-
-flex-wrap:wrap;
-
-margin-top:40px;
-
-}
-
-.examples span{
-
-padding:12px 20px;
-
-border:1px solid rgba(255,255,255,.25);
-
-border-radius:40px;
-
-color:#d8dfea;
-
-backdrop-filter:blur(10px);
-
-}
-
-.section{
-
-padding:90px 10%;
-
-background:#081422;
-
-}
-
-.section h2{
-
-font-size:42px;
-
-margin-bottom:15px;
-
-}
-
-.section p{
-
-color:#b9c3d0;
-
-font-size:20px;
-
-margin-bottom:40px;
-
-}
-
-.grid{
-
-display:grid;
-
-grid-template-columns:repeat(auto-fit,minmax(280px,1fr));
-
-gap:25px;
-
-}
-
-.card{
-
-background:#101d2e;
-
-padding:30px;
-
-border-radius:18px;
-
-transition:.3s;
-
-border:1px solid rgba(255,255,255,.05);
-
-}
-
-.card:hover{
-
-transform:translateY(-8px);
-
-border-color:#5865F2;
-
-}
-
-.card h3{
-
-margin-bottom:15px;
-
-}
-
-.card p{
-
-font-size:16px;
-
-line-height:1.6;
-
-color:#c9d2df;
-
-}
-
-footer{
-
-padding:50px;
-
-text-align:center;
-
-background:#050b14;
-
-color:#8e9aad;
-
-}
-
-@media(max-width:768px){
-
-.logo{
-
-font-size:58px;
-
-}
-
-.subtitle{
-
-font-size:22px;
-
-}
-
-.search{
-
-flex-direction:column;
-
-border-radius:20px;
-
-}
-
-.search button{
-
-width:100%;
-
-padding:22px;
-
-}
-
-}
-
-</style>
-
 </head>
 
 <body>
 
-<section class="hero">
+  <main>
 
-<div class="content">
+    <section class="hero">
 
-<div class="logo">
+      <div class="container">
 
-ATLAS
+        <div class="logo">
+          ATLAS
+        </div>
 
-</div>
+        <p class="subtitle">
+          De tu pregunta al mapa de respuestas.
+        </p>
 
-<div class="subtitle">
+        <div class="search">
 
-De tu pregunta al mapa de respuestas.
+          <input
+            id="question"
+            type="text"
+            placeholder="¿Qué quieres entender del mundo?"
+            aria-label="Escribe una pregunta sobre el mundo"
+            autocomplete="off"
+          >
 
-</div>
+          <button
+            id="searchButton"
+            type="button"
+          >
+            Explorar
+          </button>
 
-<div class="search">
+        </div>
 
-<input
-id="question"
-placeholder="¿Qué quieres entender del mundo?">
+        <div class="quick">
 
-<button id="searchButton">
+          <div>🌍 Pobreza</div>
 
-Explorar
+          <div>🌱 Deforestación</div>
 
-</button>
+          <div>🤝 Soledad</div>
 
-</div>
+          <div>📚 Educación</div>
 
-<div class="examples">
+          <div>🕊️ Conflictos</div>
 
-<span>🌍 Pobreza</span>
+          <div>💙 Salud mental</div>
 
-<span>🌱 Deforestación</span>
+        </div>
 
-<span>🤝 Soledad</span>
+      </div>
 
-<span>📚 Educación</span>
+    </section>
 
-<span>🕊️ Conflictos</span>
+  </main>
 
-<span>💙 Salud mental</span>
+  <footer>
+    ATLAS · Comprender · Conectar · Actuar
+  </footer>
 
-</div>
-
-</div>
-
-</section>
-
-<section class="section">
-
-<h2>
-
-Todo empieza con una pregunta.
-
-</h2>
-
-<p>
-
-ATLAS transforma una inquietud en un camino para comprender, conectar y actuar.
-
-</p>
-
-<div class="grid">
-
-<div class="card">
-
-<h3>🧠 Comprender</h3>
-
-<p>
-
-Entiende las causas, el contexto y las conexiones detrás de cualquier problema.
-
-</p>
-
-</div>
-
-<div class="card">
-
-<h3>🌍 Descubrir</h3>
-
-<p>
-
-Explora proyectos, investigadores, organizaciones, libros y comunidades.
-
-</p>
-
-</div>
-
-<div class="card">
-
-<h3>🚀 Actuar</h3>
-
-<p>
-
-Encuentra formas reales de participar y contribuir.
-
-</p>
-
-</div>
-
-</div>
-
-</section>
-
-<footer>
-
-ATLAS · Comprender · Conectar · Actuar
-
-</footer>
-
-<script>
-
-function buscar(){
-
-const pregunta=document.getElementById("question").value.trim();
-
-if(!pregunta){
-    alert("Escribe una pregunta para comenzar.");
-    return;
-}
-
-document.body.innerHTML = `
-<div style="
-background:#07111F;
-color:white;
-min-height:100vh;
-padding:60px;
-font-family:Inter,sans-serif;">
-
-<h1 style="font-size:60px;margin-bottom:20px;">
-🌍 ATLAS
-</h1>
-
-<h2 style="font-size:34px;margin-bottom:40px;">
-${pregunta}
-</h2>
-
-<div style="display:grid;
-grid-template-columns:repeat(auto-fit,minmax(280px,1fr));
-gap:25px;">
-
-<div style="background:#111c2b;padding:25px;border-radius:18px;">
-<h3>📚 Comprender</h3>
-<p>Aquí aparecerán artículos, libros e investigaciones.</p>
-</div>
-
-<div style="background:#111c2b;padding:25px;border-radius:18px;">
-<h3>🚀 Proyectos</h3>
-<p>Aquí aparecerán organizaciones y proyectos relacionados.</p>
-</div>
-
-<div style="background:#111c2b;padding:25px;border-radius:18px;">
-<h3>👥 Personas</h3>
-<p>Aquí aparecerán investigadores y referentes.</p>
-</div>
-
-<div style="background:#111c2b;padding:25px;border-radius:18px;">
-<h3>🤝 Cómo actuar</h3>
-<p>Aquí aparecerán formas de colaborar y participar.</p>
-</div>
-
-</div>
-
-<br><br>
-
-<button onclick="location.reload()" style="
-padding:15px 30px;
-border:none;
-border-radius:40px;
-background:#5865F2;
-color:white;
-font-size:18px;
-cursor:pointer;">
-
-← Volver
-
-</button>
-
-</div>
-`;
-
-}
-
-<script src="js/app.js"></script>
-
-<footer>
-  ATLAS · Comprender · Conectar · Actuar
-</footer>
-
-<script src="js/app.js"></script>
+  <script src="js/app.js"></script>
 
 </body>
 </html>
