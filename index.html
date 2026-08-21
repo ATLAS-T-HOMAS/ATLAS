@@ -406,17 +406,72 @@ ATLAS · Comprender · Conectar · Actuar
 
 function buscar(){
 
-const pregunta=document.getElementById("question").value;
+const pregunta=document.getElementById("question").value.trim();
 
 if(!pregunta){
-
-alert("Escribe una pregunta para comenzar.");
-
-return;
-
+    alert("Escribe una pregunta para comenzar.");
+    return;
 }
 
-alert("Próximamente ATLAS construirá un mapa personalizado para:\n\n"+pregunta);
+document.body.innerHTML = `
+<div style="
+background:#07111F;
+color:white;
+min-height:100vh;
+padding:60px;
+font-family:Inter,sans-serif;">
+
+<h1 style="font-size:60px;margin-bottom:20px;">
+🌍 ATLAS
+</h1>
+
+<h2 style="font-size:34px;margin-bottom:40px;">
+${pregunta}
+</h2>
+
+<div style="display:grid;
+grid-template-columns:repeat(auto-fit,minmax(280px,1fr));
+gap:25px;">
+
+<div style="background:#111c2b;padding:25px;border-radius:18px;">
+<h3>📚 Comprender</h3>
+<p>Aquí aparecerán artículos, libros e investigaciones.</p>
+</div>
+
+<div style="background:#111c2b;padding:25px;border-radius:18px;">
+<h3>🚀 Proyectos</h3>
+<p>Aquí aparecerán organizaciones y proyectos relacionados.</p>
+</div>
+
+<div style="background:#111c2b;padding:25px;border-radius:18px;">
+<h3>👥 Personas</h3>
+<p>Aquí aparecerán investigadores y referentes.</p>
+</div>
+
+<div style="background:#111c2b;padding:25px;border-radius:18px;">
+<h3>🤝 Cómo actuar</h3>
+<p>Aquí aparecerán formas de colaborar y participar.</p>
+</div>
+
+</div>
+
+<br><br>
+
+<button onclick="location.reload()" style="
+padding:15px 30px;
+border:none;
+border-radius:40px;
+background:#5865F2;
+color:white;
+font-size:18px;
+cursor:pointer;">
+
+← Volver
+
+</button>
+
+</div>
+`;
 
 }
 
