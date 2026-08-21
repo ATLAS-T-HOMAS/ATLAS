@@ -1,302 +1,255 @@
-// ==========================
-// ATLAS v0.2
-// ==========================
+// ==========================================
+// ATLAS v1.0
+// ==========================================
+
+const NODOS = {
+  Madrid: {
+    problema: "Soledad",
+    descripcion:
+      "Madrid cuenta con numerosas iniciativas para combatir la soledad no deseada.",
+    proyecto: "Grandes Amigos"
+  },
+
+  Brasil: {
+    problema: "Deforestación",
+    descripcion:
+      "La Amazonía es uno de los mayores retos ambientales del planeta.",
+    proyecto: "WWF Brasil"
+  },
+
+  Kenia: {
+    problema: "Acceso al agua",
+    descripcion:
+      "Miles de proyectos trabajan para mejorar el acceso al agua potable.",
+    proyecto: "Water.org"
+  },
+
+  Palestina: {
+    problema: "Conflicto",
+    descripcion:
+      "Existen organizaciones dedicadas a la paz, la ayuda humanitaria y el diálogo.",
+    proyecto: "Search for Common Ground"
+  },
+
+  Tokio: {
+    problema: "Innovación",
+    descripcion:
+      "Tokio es uno de los grandes polos de innovación tecnológica.",
+    proyecto: "Startup Ecosystem"
+  },
+
+  "Nueva York": {
+    problema: "Educación",
+    descripcion:
+      "Universidades y fundaciones impulsan proyectos educativos globales.",
+    proyecto: "UNICEF"
+  },
+
+  Chile: {
+    problema: "Cambio climático",
+    descripcion:
+      "Chile desarrolla numerosos proyectos relacionados con energía y clima.",
+    proyecto: "Fundación Chile"
+  }
+};
 
 document.addEventListener("DOMContentLoaded", () => {
 
-    const input = document.getElementById("question");
-    const button = document.getElementById("searchButton");
+  const input = document.getElementById("question");
+  const button = document.getElementById("searchButton");
 
-    if (button) {
-        button.addEventListener("click", buscar);
-    }
+  if(button){
+    button.addEventListener("click", buscar);
+  }
 
-    if (input) {
-        input.addEventListener("keydown", (e) => {
-            if (e.key === "Enter") {
-                buscar();
-            }
-        });
-    }
+  if(input){
+    input.addEventListener("keydown",(e)=>{
+
+      if(e.key==="Enter"){
+        buscar();
+      }
+
+    });
+  }
+
+  document.querySelectorAll(".node").forEach(nodo=>{
+
+    nodo.addEventListener("click",()=>{
+
+      abrirNodo(
+        nodo.dataset.node
+      );
+
+    });
+
+  });
+
+  document.querySelector(".close-panel")
+    .addEventListener("click",cerrarPanel);
 
 });
 
-function buscar() {
+function buscar(){
 
-    const pregunta = document.getElementById("question").value.trim();
+  const texto =
+  document
+  .getElementById("question")
+  .value
+  .toLowerCase()
+  .trim();
 
-    if (!pregunta) {
-        alert("Escribe una pregunta.");
-        return;
+  if(texto===""){
+
+    alert("Escribe una pregunta.");
+
+    return;
+
+  }
+
+  apagarNodos();
+
+  let encontrados=0;
+
+  Object.keys(NODOS).forEach(nombre=>{
+
+    const datos=NODOS[nombre];
+
+    const contenido=(
+
+      nombre+" "+
+      datos.problema+" "+
+      datos.descripcion+" "+
+      datos.proyecto
+
+    ).toLowerCase();
+
+    if(contenido.includes(texto)){
+
+      encontrados++;
+
+      encenderNodo(nombre);
+
     }
 
-    mostrarResultados(pregunta);
+  });
+
+  if(encontrados===1){
+
+    Object.keys(NODOS).forEach(nombre=>{
+
+      const datos=NODOS[nombre];
+
+      const contenido=(
+
+      nombre+" "+
+      datos.problema+" "+
+      datos.descripcion+" "+
+      datos.proyecto
+
+      ).toLowerCase();
+
+      if(contenido.includes(texto)){
+
+        abrirNodo(nombre);
+
+      }
+
+    });
+
+  }
+
+  if(encontrados===0){
+
+    alert(
+      "Todavía no tenemos resultados para esa búsqueda.\n\nPronto ATLAS utilizará IA para encontrar conexiones."
+    );
+
+    encenderTodos();
+
+  }
 
 }
 
-function mostrarResultados(pregunta) {
+function apagarNodos(){
 
-    document.body.innerHTML = `
+  document.querySelectorAll(".node").forEach(n=>{
 
-    <div class="dashboard">
+    n.style.opacity=".15";
+    n.style.transform="scale(.8)";
 
-        <header class="topbar">
-
-            <h1>🌍 ATLAS</h1>
-
-            <button class="volver" onclick="location.reload()">
-                ← Nueva pregunta
-            </button>
-
-        </header>
-
-        <section class="heroQuestion">
-
-            <h2>${pregunta}</h2>
-
-            <p>
-                Hemos encontrado un punto de partida para comprender este tema.
-            </p>
-
-        </section>
-
-        <section class="grid">
-
-            ${crearCard(
-                "🧠 Comprender",
-                "Artículos, libros e investigaciones para entender el problema."
-            )}
-
-            ${crearCard(
-                "🚀 Proyectos",
-                "Organizaciones e iniciativas que ya trabajan en este reto."
-            )}
-
-            ${crearCard(
-                "👥 Personas",
-                "Investigadores, referentes y líderes relacionados."
-            )}
-
-            ${crearCard(
-                "🤝 Participar",
-                "Voluntariado, empleo, donaciones y formas de colaborar."
-            )}
-
-        </section>
-
-        <section class="mapa">
-
-            <h2>Mapa de respuestas</h2>
-
-            <div class="nodos">
-
-                <div class="nodo" onclick="abrirNodo('Madrid')">
-                    📍 Madrid
-                </div>
-
-                <div class="nodo" onclick="abrirNodo('Brasil')">
-                    🌳 Brasil
-                </div>
-
-                <div class="nodo" onclick="abrirNodo('Kenia')">
-                    💧 Kenia
-                </div>
-
-                <div class="nodo" onclick="abrirNodo('Palestina')">
-                    🕊️ Palestina
-                </div>
-
-                <div class="nodo" onclick="abrirNodo('Tokio')">
-                    🏙️ Tokio
-                </div>
-
-            </div>
-
-        </section>
-
-    </div>
-
-    `;
-
-    insertarEstilosDashboard();
+  });
 
 }
 
-function crearCard(titulo, texto) {
+function encenderTodos(){
 
-    return `
-        <div class="cardAtlas">
+  document.querySelectorAll(".node").forEach(n=>{
 
-            <h3>${titulo}</h3>
+    n.style.opacity="1";
+    n.style.transform="scale(1)";
 
-            <p>${texto}</p>
+  });
 
-        </div>
-    `;
+}
+
+function encenderNodo(nombre){
+
+  const nodo=document.querySelector(
+
+    `[data-node="${nombre}"]`
+
+  );
+
+  if(!nodo) return;
+
+  nodo.style.opacity="1";
+  nodo.style.transform="scale(1.7)";
 
 }
 
 function abrirNodo(nombre){
 
-    alert(
-`🌍 ${nombre}
+  const datos=NODOS[nombre];
 
-En la siguiente versión aparecerán:
+  if(!datos) return;
 
-• Proyectos
-• Personas
-• Libros
-• Comunidades
-• Eventos
-• Cómo participar`
-    );
+  document
+  .getElementById("panelTitle")
+  .innerHTML="📍 "+nombre;
+
+  document
+  .getElementById("panelDescription")
+  .innerHTML=
+
+  `
+  <strong>Problema principal</strong><br><br>
+
+  ${datos.problema}
+  <br><br>
+
+  ${datos.descripcion}
+
+  <br><br>
+
+  <strong>Proyecto destacado</strong>
+
+  <br><br>
+
+  🚀 ${datos.proyecto}
+  `;
+
+  document
+  .getElementById("panel")
+  .classList
+  .add("active");
 
 }
 
-function insertarEstilosDashboard(){
-
-    if(document.getElementById("atlas-dashboard-style")) return;
-
-    const style=document.createElement("style");
-
-    style.id="atlas-dashboard-style";
-
-    style.innerHTML=`
-
-    .dashboard{
-
-        background:#07111F;
-
-        min-height:100vh;
-
-        color:white;
-
-        padding:50px;
-
-        font-family:Inter,sans-serif;
-
-    }
-
-    .topbar{
-
-        display:flex;
-
-        justify-content:space-between;
-
-        align-items:center;
-
-        margin-bottom:60px;
-
-    }
-
-    .volver{
-
-        background:#5D7CFA;
-
-        border:none;
-
-        color:white;
-
-        padding:14px 22px;
-
-        border-radius:40px;
-
-        cursor:pointer;
-
-        font-size:16px;
-
-    }
-
-    .heroQuestion h2{
-
-        font-size:46px;
-
-        margin-bottom:15px;
-
-    }
-
-    .heroQuestion p{
-
-        color:#B8C5D6;
-
-        margin-bottom:50px;
-
-        font-size:20px;
-
-    }
-
-    .grid{
-
-        display:grid;
-
-        grid-template-columns:repeat(auto-fit,minmax(260px,1fr));
-
-        gap:20px;
-
-        margin-bottom:60px;
-
-    }
-
-    .cardAtlas{
-
-        background:#102035;
-
-        padding:25px;
-
-        border-radius:18px;
-
-        transition:.3s;
-
-    }
-
-    .cardAtlas:hover{
-
-        transform:translateY(-5px);
-
-        background:#162B46;
-
-    }
-
-    .mapa h2{
-
-        margin-bottom:30px;
-
-    }
-
-    .nodos{
-
-        display:flex;
-
-        flex-wrap:wrap;
-
-        gap:20px;
-
-    }
-
-    .nodo{
-
-        background:#1A2D48;
-
-        padding:18px 26px;
-
-        border-radius:40px;
-
-        cursor:pointer;
-
-        transition:.3s;
-
-    }
-
-    .nodo:hover{
-
-        background:#5D7CFA;
-
-        transform:scale(1.05);
-
-    }
-
-    `;
-
-    document.head.appendChild(style);
+function cerrarPanel(){
+
+  document
+  .getElementById("panel")
+  .classList
+  .remove("active");
 
 }
