@@ -617,3 +617,19 @@ nav{
 }
 
 }
+.node{
+transition:all .35s ease;
+}
+
+.node.active{
+transform:scale(1.8);
+opacity:1;
+}
+
+.panel strong{
+color:white;
+}
+
+.panel{
+overflow-y:auto;
+}
