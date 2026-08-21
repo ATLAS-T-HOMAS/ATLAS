@@ -89,8 +89,78 @@ document.addEventListener("DOMContentLoaded", () => {
 
 });
 
-function buscar(){
+async function buscar() {
 
+    const pregunta = document
+        .getElementById("question")
+        .value
+        .trim();
+
+    if (!pregunta) {
+        alert("Escribe una pregunta.");
+        return;
+    }
+
+    try {
+
+        const respuesta = await fetch("/api/search", {
+
+            method: "POST",
+
+            headers: {
+                "Content-Type": "application/json"
+            },
+
+            body: JSON.stringify({
+                pregunta
+            })
+
+        });
+
+        const datos = await respuesta.json();
+
+        console.log(datos);
+
+        mostrarResultadosIA(datos);
+
+    } catch (error) {
+
+        console.error(error);
+
+        alert("No se pudo conectar con ATLAS.");
+
+    }
+
+}
+function mostrarResultadosIA(datos){
+
+    document.getElementById("panelTitle").innerHTML =
+        "🌍 " + datos.tema;
+
+    document.getElementById("panelDescription").innerHTML =
+
+    `
+    <strong>Resumen</strong>
+
+    <br><br>
+
+    ${datos.resumen}
+
+    <br><br>
+
+    <strong>Países relacionados</strong>
+
+    <br><br>
+
+    ${datos.paises.join(", ")}
+    `;
+
+    document
+        .getElementById("panel")
+        .classList
+        .add("active");
+
+}
   const texto =
   document
   .getElementById("question")
