@@ -166,3 +166,118 @@ background:#050C16;
 color:#98A6B8;
 
 }
+.world-preview{
+    display:flex;
+    justify-content:center;
+    margin:60px 0;
+}
+
+.world-map{
+
+    position:relative;
+
+    width:1000px;
+
+    max-width:95%;
+
+    aspect-ratio:2/1;
+
+    border-radius:25px;
+
+    background:
+    radial-gradient(circle at center,#143153 0%,#091321 70%);
+
+    border:1px solid rgba(255,255,255,.08);
+
+    overflow:hidden;
+
+}
+
+/* Continentes simulados */
+
+.world-map::before{
+
+    content:"";
+
+    position:absolute;
+
+    inset:0;
+
+    background:url("https://upload.wikimedia.org/wikipedia/commons/8/80/World_map_-_low_resolution.svg");
+
+    background-repeat:no-repeat;
+
+    background-position:center;
+
+    background-size:90%;
+
+    filter:invert(1);
+
+    opacity:.12;
+
+}
+
+.node{
+
+    position:absolute;
+
+    width:16px;
+
+    height:16px;
+
+    border-radius:50%;
+
+    background:#69d2ff;
+
+    box-shadow:
+    0 0 12px #69d2ff,
+    0 0 30px #69d2ff;
+
+    cursor:pointer;
+
+    animation:pulse 2s infinite;
+
+}
+
+@keyframes pulse{
+
+0%{
+transform:scale(1);
+}
+
+50%{
+transform:scale(1.5);
+}
+
+100%{
+transform:scale(1);
+}
+
+}
+
+/* Posiciones */
+
+.madrid{
+top:38%;
+left:46%;
+}
+
+.brasil{
+top:60%;
+left:34%;
+}
+
+.kenia{
+top:54%;
+left:56%;
+}
+
+.palestina{
+top:41%;
+left:54%;
+}
+
+.tokio{
+top:40%;
+left:83%;
+}
