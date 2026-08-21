@@ -633,3 +633,14 @@ color:white;
 .panel{
 overflow-y:auto;
 }
+#worldMap{
+
+height:650px;
+
+width:100%;
+
+border-radius:25px;
+
+overflow:hidden;
+
+}
